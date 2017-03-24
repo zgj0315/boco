@@ -29,7 +29,7 @@ done
 
 JVM_OPTS="-server -Xms256M -Xmx256M -Xloggc:$LOG/gc.log -XX:-PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSParallelRemarkEnabled -XX:+HeapDumpOnOutOfMemoryError"
 
-for i in `ps aux | grep kkPlatDataService | grep -server | awk '{print$2}'`
+for i in `ps aux | grep mroXml2Json | grep -server | awk '{print$2}'`
 do
   echo "kill "$i
   kill $i
@@ -37,5 +37,5 @@ done
 echo "sleep 3s"
 sleep 3
 
-java $JVM_OPTS -cp $classpath com.qzt360.Application > /dev/null 2>&1 &
-echo "dataService start success."
+java $JVM_OPTS -cp $classpath cn.com.boco.Application > /dev/null 2>&1 &
+echo "mroXml2Json start success."
