@@ -101,4 +101,92 @@ public class MroService {
         }
     }
 
+    //测试gz格式xml文件读取速度
+    public void readXmlSpeet(File fileXml, String strJsonPath) {
+        BufferedReader br = null;
+        try {
+            if (fileXml.getName().endsWith(".gz")) {
+                br = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(fileXml))));
+            } else {
+                br = new BufferedReader(new FileReader(fileXml));
+            }
+            String strLine = null;
+            String[] astrTitle = null;
+            String strObject = null;
+            String[] astrValue = null;
+            while ((strLine = br.readLine()) != null) {
+
+            }
+        } catch (Exception e) {
+            log.error("", e);
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (Exception e) {
+                    log.error("", e);
+                }
+            }
+        }
+    }
+
+    //测试gz格式xml文件读取和内容转换的速度
+    public void readXmlAndConvertSpeet(File fileXml, String strJsonPath) {
+        BufferedReader br = null;
+        try {
+            if (fileXml.getName().endsWith(".gz")) {
+                br = new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(fileXml))));
+            } else {
+                br = new BufferedReader(new FileReader(fileXml));
+            }
+            String strLine = null;
+            String[] astrTitle = null;
+            String strObject = null;
+            String[] astrValue = null;
+            while ((strLine = br.readLine()) != null) {
+                StringBuffer sbOutput = null;
+                strLine = strLine.trim();
+                //这个条件命中率最高，放在最外层
+                if (strLine.startsWith("<v>") && strLine.endsWith("</v>")) {
+                    strLine = strLine.substring(3);
+                    strLine = strLine.substring(0, strLine.length() - 4);
+                    astrValue = strLine.split(" ");
+                    sbOutput = new StringBuffer();
+                    sbOutput.append(strObject);
+                    for (int i = 0; i < astrTitle.length; i++) {
+                        sbOutput.append(", \"");
+                        sbOutput.append(astrTitle[i]);
+                        sbOutput.append("\":\"");
+                        sbOutput.append(astrValue[i]);
+                        sbOutput.append("\"");
+                    }
+                    sbOutput.append("}\n");
+                } else {
+                    if (strLine.startsWith("<object ") && strLine.endsWith(">")) {
+                        strLine = strLine.substring(8);
+                        strLine = strLine.substring(0, strLine.length() - 1);
+                        strObject = "{\"" + strLine.replaceAll("\" ", "\", \"").replaceAll("=\"", "\":\"");
+                    } else {
+                        if (strLine.startsWith("<smr>") && strLine.endsWith("</smr>")) {
+                            strLine = strLine.substring(5);
+                            strLine = strLine.substring(0, strLine.length() - 6);
+                            strLine = strLine.replaceAll("\\.", "\\_");
+                            astrTitle = strLine.split(" ");
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("", e);
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (Exception e) {
+                    log.error("", e);
+                }
+            }
+        }
+    }
+
 }

@@ -56,12 +56,24 @@ public class MroServiceTest {
      */
     @Test
     public void testXml2JsonForFileXmlStrJsonPath() throws Exception {
-        long lStart = System.currentTimeMillis();
-        mro.xml2Json(new File("/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml"), "/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml.json");
-        log.info("xml  to json time:{}", System.currentTimeMillis() - lStart);
-        lStart = System.currentTimeMillis();
-        mro.xml2Json(new File("/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml.gz"), "/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml.gz.json");
-        log.info("xmlgz  to json time:{}", System.currentTimeMillis() - lStart);
+//        long lStart = System.currentTimeMillis();
+//        mro.xml2Json(new File("/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml"), "/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml.json");
+//        log.info("xml  to json time:{}", System.currentTimeMillis() - lStart);
+//        lStart = System.currentTimeMillis();
+//        mro.xml2Json(new File("/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml.gz"), "/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml.gz.json");
+//        log.info("xmlgz  to json time:{}", System.currentTimeMillis() - lStart);
+    }
+
+    @Test
+    public void testXmlSpeet() throws Exception {
+        for (int i = 0; i < 5; i++) {
+            long lStart = System.currentTimeMillis();
+            mro.readXmlSpeet(new File("/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml.gz"), "");
+            log.info("read xml time:{}", System.currentTimeMillis() - lStart);
+            lStart = System.currentTimeMillis();
+            mro.readXmlAndConvertSpeet(new File("/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml.gz"), "");
+            log.info("read xml and convert time:{}", System.currentTimeMillis() - lStart);
+        }
     }
 
 
