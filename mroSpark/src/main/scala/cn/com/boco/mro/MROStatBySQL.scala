@@ -1,14 +1,14 @@
-package cn.com.boco
+package cn.com.boco.mro
 
 import org.apache.spark.sql.SparkSession
 
 /**
   * Created by zhaogj on 24/03/2017.
   */
-object MROStat {
+object MROStatBySQL {
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder
-      .master("local[*]")
+      //.master("local[*]")
       .appName("MRO Stat")
       .getOrCreate()
     val df = spark.read.json("/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_29.json")
