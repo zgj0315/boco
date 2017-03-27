@@ -12,15 +12,13 @@ resolvers ++= Seq(
 )
 
 val spark = "org.apache.spark" % "spark-core_2.10" % "1.6.0-cdh5.7.0"
-val mllib = "org.apache.spark" % "spark-mllib_2.10" % "1.6.0-cdh5.7.0" excludeAll (ExclusionRule(organization = "javax.servlet"))
 val hdfs = "org.apache.hadoop" % "hadoop-hdfs" % "2.6.0-cdh5.7.0" excludeAll (ExclusionRule(organization = "javax.servlet"))
-val spark_streaming_kafka = "org.apache.spark" % "spark-streaming-kafka_2.10" % "1.6.0-cdh5.7.0" excludeAll (ExclusionRule(organization = "javax.servlet"))
+val spark_sql = "org.apache.spark" % "spark-sql_2.10" % "1.6.0-cdh5.7.0" excludeAll (ExclusionRule(organization = "javax.servlet"))
 
 lazy val root = (project in file(".")).
   settings(commonSettings: _*).
   settings(
     libraryDependencies += spark,
-    //libraryDependencies += mllib,
-    libraryDependencies += hdfs
-    //libraryDependencies += spark_streaming_kafka
+    libraryDependencies += hdfs,
+    libraryDependencies += spark_sql
   )
