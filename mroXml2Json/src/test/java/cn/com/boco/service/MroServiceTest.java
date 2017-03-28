@@ -66,11 +66,11 @@ public class MroServiceTest {
 
     @Test
     public void testXmlSpeet() throws Exception {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             long lStart = System.currentTimeMillis();
-            mro.readXmlSpeet(new File("/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml.gz"), "");
-            log.info("read xml time:{}", System.currentTimeMillis() - lStart);
-            lStart = System.currentTimeMillis();
+            //mro.readXmlSpeet(new File("/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml.gz"), "");
+            //log.info("read xml time:{}", System.currentTimeMillis() - lStart);
+            //lStart = System.currentTimeMillis();
             mro.readXmlAndConvertSpeet(new File("/Users/zhaogj/tmp/TD-LTE_MRO_HUAWEI_OMC_1112_1.xml.gz"), "");
             log.info("read xml and convert time:{}", System.currentTimeMillis() - lStart);
         }

@@ -148,30 +148,30 @@ public class MroService {
                 strLine = strLine.trim();
                 //这个条件命中率最高，放在最外层
                 if (strLine.startsWith("<v>") && strLine.endsWith("</v>")) {
-                    strLine = strLine.substring(3);
-                    strLine = strLine.substring(0, strLine.length() - 4);
-                    astrValue = strLine.split(" ");
-                    sbOutput = new StringBuffer();
-                    sbOutput.append(strObject);
-                    for (int i = 0; i < astrTitle.length; i++) {
-                        sbOutput.append(", \"");
-                        sbOutput.append(astrTitle[i]);
-                        sbOutput.append("\":\"");
-                        sbOutput.append(astrValue[i]);
-                        sbOutput.append("\"");
-                    }
-                    sbOutput.append("}\n");
+//                    strLine = strLine.substring(3);
+//                    strLine = strLine.substring(0, strLine.length() - 4);
+//                    astrValue = strLine.split(" ");
+//                    sbOutput = new StringBuffer();
+//                    sbOutput.append(strObject);
+//                    for (int i = 0; i < astrTitle.length; i++) {
+//                        sbOutput.append(", \"");
+//                        sbOutput.append(astrTitle[i]);
+//                        sbOutput.append("\":\"");
+//                        sbOutput.append(astrValue[i]);
+//                        sbOutput.append("\"");
+//                    }
+//                    sbOutput.append("}\n");
                 } else {
                     if (strLine.startsWith("<object ") && strLine.endsWith(">")) {
-                        strLine = strLine.substring(8);
-                        strLine = strLine.substring(0, strLine.length() - 1);
-                        strObject = "{\"" + strLine.replaceAll("\" ", "\", \"").replaceAll("=\"", "\":\"");
+//                        strLine = strLine.substring(8);
+//                        strLine = strLine.substring(0, strLine.length() - 1);
+//                        strObject = "{\"" + strLine.replaceAll("\" ", "\", \"").replaceAll("=\"", "\":\"");
                     } else {
                         if (strLine.startsWith("<smr>") && strLine.endsWith("</smr>")) {
-                            strLine = strLine.substring(5);
-                            strLine = strLine.substring(0, strLine.length() - 6);
-                            strLine = strLine.replaceAll("\\.", "\\_");
-                            astrTitle = strLine.split(" ");
+//                            strLine = strLine.substring(5);
+//                            strLine = strLine.substring(0, strLine.length() - 6);
+//                            strLine = strLine.replaceAll("\\.", "\\_");
+//                            astrTitle = strLine.split(" ");
                         }
                     }
                 }
